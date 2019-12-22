@@ -1,13 +1,16 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
+import { IonApp, IonRouterOutlet } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { AppPage } from './declarations';
-
-import Menu from './components/Menu';
 import Home from './pages/Home';
-import List from './pages/List';
-import { home, list } from 'ionicons/icons';
+import Phone from './pages/Phone';
+import Cameraa from './pages/Cameraa';
+import Signup from './pages/Signup';
+import Payment from './pages/Payment';
+import Success from './pages/Success';
+import Invalid from './pages/Invalid';
+import Security from './pages/Security';
+import Signupcamera from './pages/Signupcamera';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -28,30 +31,21 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
-const appPages: AppPage[] = [
-  {
-    title: 'Home',
-    url: '/home',
-    icon: home
-  },
-  {
-    title: 'List',
-    url: '/home/list',
-    icon: list
-  }
-];
-
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
-      <IonSplitPane contentId="main">
-        <Menu appPages={appPages} />
-        <IonRouterOutlet id="main">
-          <Route path="/home" component={Home} exact={true} />
-          <Route path="/home/list" component={List} exact={true} />
-          <Route path="/" render={() => <Redirect to="/home"/> } exact={true} />
-        </IonRouterOutlet>
-      </IonSplitPane>
+      <IonRouterOutlet>
+        <Route path="/home" component={Home} exact={true} />
+        <Route path="/phone" component={Phone} exact={true} />
+        <Route path="/dashboard" component={Signup} exact={true} />
+        <Route path="/payment" component={Payment} exact={true} />
+        <Route path="/cameraa" component={Cameraa} exact={true} />
+        <Route path="/success" component={Success} exact={true} />
+        <Route path="/invalid" component={Invalid} exact={true} />
+        <Route path="/security" component={Security} exact={true} />
+        <Route path="/signupcamera" component={Signupcamera} exact={true} />
+        <Route exact path="/" render={() => <Redirect to="/dashboard" />} />
+      </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
 );

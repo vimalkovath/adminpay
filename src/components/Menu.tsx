@@ -5,41 +5,51 @@ import {
   IonItem,
   IonLabel,
   IonList,
+  IonListHeader,
   IonMenu,
   IonMenuToggle,
   IonTitle,
-  IonToolbar
+  IonToolbar,
+  IonToggle
 } from '@ionic/react';
-import React from 'react';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { AppPage } from '../declarations';
+import { calendar, contacts, hammer, help, informationCircle, logIn, logOut, map, person, personAdd } from 'ionicons/icons';
+import React, { useState } from 'react';
+import { RouteComponentProps, withRouter } from 'react-router';
 
-interface MenuProps extends RouteComponentProps {
-  appPages: AppPage[];
+
+
+interface Pages {
+  title: string,
+  path: string,
+  icon: { ios: string, md: string },
+  routerDirection?: string
+}
+interface StateProps {
+  darkMode: boolean;
+  isAuthenticated: boolean;
 }
 
-const Menu: React.FunctionComponent<MenuProps> = ({ appPages }) => (
-  <IonMenu contentId="main" type="overlay">
-    <IonHeader>
-      <IonToolbar>
-        <IonTitle>Menu</IonTitle>
-      </IonToolbar>
-    </IonHeader>
-    <IonContent>
-      <IonList>
-        {appPages.map((appPage, index) => {
-          return (
-            <IonMenuToggle key={index} autoHide={false}>
-              <IonItem routerLink={appPage.url} routerDirection="none">
-                <IonIcon slot="start" icon={appPage.icon} />
-                <IonLabel>{appPage.title}</IonLabel>
-              </IonItem>
-            </IonMenuToggle>
-          );
-        })}
-      </IonList>
-    </IonContent>
-  </IonMenu>
-);
 
-export default withRouter(Menu);
+interface MenuProps extends RouteComponentProps, StateProps { }
+
+const Menu: React.FC = (props) => {
+  const [disableMenu, setDisableMenu] = useState(false);
+
+
+  return (
+    <IonMenu type="overlay" disabled={disableMenu} contentId="main">
+      <IonHeader>
+        <IonToolbar>
+          <IonTitle>Menu</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+      <IonContent class="outer-content">
+       
+    
+       
+      </IonContent>
+    </IonMenu>
+  );
+};
+
+export default Menu
